@@ -18,7 +18,7 @@ let xxx = `# 如何获取完整的成绩表
 `;
 
 export default {
-  name: "",
+  name: "GetTrans",
   components: {
     Markdown,
   },
