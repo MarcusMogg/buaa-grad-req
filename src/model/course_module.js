@@ -19,6 +19,13 @@ const modules = [
     ["Profession", "专业课程"]
 ];
 
+const propertys = [
+    ["Necessary", "必修"],
+    ["Optional1", "任选"],
+    ["Optional2", "最低课数"],
+    ["Optional3", "最低学分"],
+]
+
 function makeEnum(arr) {
     let obj = {};
     for (let val of arr) {
@@ -40,3 +47,15 @@ export const Modules = makeMap(modules, CourseModule);
 
 export const CourseCategory = makeEnum(categorys);
 export const Categorys = makeMap(categorys, CourseCategory);
+
+export const CourseProp = makeEnum(propertys)
+export const Propertys = makeMap(propertys, CourseProp)
+
+export function GetName(enm, sym) {
+    for (const [key, value] of enm) {
+        if (value === sym) {
+            return key;
+        }
+    }
+    return undefined;
+}

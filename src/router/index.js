@@ -13,6 +13,16 @@ const routes = [
     path: '/trans',
     name: 'Trans',
     component: () => import('@/views/Transcript.vue')
+  },
+  {
+    path: '/create',
+    name: 'CreateCourse',
+    component: () => import('@/views/CourseCreate.vue')
+  },
+  {
+    path: '/edit/:title',
+    name: 'EditCourse',
+    component: () => import('@/views/CourseCreate.vue')
   }
 ]
 

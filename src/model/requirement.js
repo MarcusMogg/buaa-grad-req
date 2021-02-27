@@ -1,10 +1,7 @@
-import { join } from "core-js/fn/array";
+export function loadRFromJson(s) {
+    return JSON.parse(s.slice(4));
+}
 
-export class Requirement {
-    constructor() {
-    }
-
-    toString() {
-        return "Req:" + JSON.stringify(this);
-    }
+export function saveRAsJson(s) {
+    return "Req:" + JSON.stringify(s);
 }

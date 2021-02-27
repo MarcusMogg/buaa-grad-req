@@ -15,7 +15,7 @@ let createTranscriptEntry = (s) => {
 };
 
 
-export default (title, s) => {
+export function loadTFromStr(title, s) {
     let ss = s.split(/\r\n|\r|\n/)
     let res = {
         title: title,
@@ -28,4 +28,11 @@ export default (title, s) => {
         }
     }
     return res;
-};
+}
+
+export function loadTFromJson(s) {
+    return JSON.parse(s.slice(4));
+}
+export function saveTAsJson(s) {
+    return "Tra:" + JSON.stringify(s);
+}
