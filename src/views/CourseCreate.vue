@@ -29,12 +29,7 @@
       </el-col>
     </el-row>
     <div v-for="(value, index) in content" :key="index" class="item">
-      <CourseModule
-        :courses="value.courses"
-        :type="value.type"
-        :index="index"
-        :bgcol="index % 2 == 1"
-      />
+      <CourseModule :course="value" :index="index" :bgcol="index % 2 == 1" />
     </div>
   </div>
 </template>
@@ -75,6 +70,7 @@ export default {
       this.content.push({
         courses: [],
         type: sym,
+        min: 0,
       });
     },
     getJson() {
@@ -85,6 +81,7 @@ export default {
       for (const item of this.content) {
         let tmp = {
           type: item.type,
+          min: item.min,
           courses: [],
         };
         for (const c of item.courses) {

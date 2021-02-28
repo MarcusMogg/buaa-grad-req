@@ -43,12 +43,12 @@
       </el-col>
     </el-row>
     <el-row style="margin-top: 18px">
-      <el-col :span="8" :offset="2">已选择: {{ req }}</el-col>
-      <el-col :span="8" :offset="4">已选择: {{ tran }}</el-col>
+      <el-col :span="8" :offset="2">{{ selectReq }}</el-col>
+      <el-col :span="8" :offset="4"> {{ selectTra }}</el-col>
     </el-row>
     <el-row style="margin-top: 18px">
       <el-col :span="8" :offset="8">
-        <el-button type="primary">进行比较</el-button></el-col
+        <el-button type="primary" @click="compare">进行比较</el-button></el-col
       >
     </el-row>
     <el-dialog title="学习进度" :visible.sync="dialogFormVisible">
@@ -97,8 +97,8 @@ export default {
     return {
       trans: [],
       reqs: [],
-      req: "",
-      tran: "",
+      req: -1,
+      tran: -1,
       dialogFormVisible: false,
       form: {
         title: "",
@@ -115,11 +115,11 @@ export default {
       localStorage.removeItem(rTitle(this.reqs[index].title));
       this.reqs.splice(index, 1);
     });
-    this.$bus.on("selectTran", (title) => {
-      this.tran = title;
+    this.$bus.on("selectTran", (index) => {
+      this.tran = index;
     });
-    this.$bus.on("selectReq", (title) => {
-      this.req = title;
+    this.$bus.on("selectReq", (index) => {
+      this.req = index;
     });
     this.$bus.on("edit", (index) => {
       this.$router.push({ path: `/edit/${this.reqs[index].title}` });
@@ -136,6 +136,18 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    selectReq() {
+      return this.req < this.reqs.length && this.req >= 0
+        ? `${this.reqs[this.req].title} `
+        : "未选择";
+    },
+    selectTra() {
+      return this.tran < this.trans.length && this.tran >= 0
+        ? `${this.trans[this.tran].title} `
+        : "未选择";
+    },
   },
   methods: {
     transSubmit() {
@@ -173,6 +185,15 @@ export default {
       } else {
         ERR("clearStorage参数错误");
       }
+    },
+    compare() {
+      this.$router.push({
+        path: "/compare",
+        query: {
+          reqs: this.reqs[this.req].title,
+          trans: this.trans[this.tran].title,
+        },
+      });
     },
   },
 };

@@ -1,5 +1,11 @@
 import * as course from "./course_module.js"
 
+/*entrys : {
+    code: "",
+    name: "",
+    category: "",
+    unit: 0
+};*/
 let createTranscriptEntry = (s) => {
     let ss = s.split(/\s/)
     let res = {

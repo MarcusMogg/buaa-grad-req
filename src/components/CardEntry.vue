@@ -38,9 +38,9 @@ export default {
     },
     select() {
       if (this.type) {
-        this.$bus.emit("selectReq", this.title);
+        this.$bus.emit("selectReq", this.index);
       } else {
-        this.$bus.emit("selectTran", this.title);
+        this.$bus.emit("selectTran", this.index);
       }
     },
   },

@@ -3,20 +3,42 @@
     <el-container>
       <el-container>
         <el-aside :class="{ bgcol: bgcol }" width="200px" style="height: 100%">
-          <el-row
-            ><span>{{ typeName }}</span></el-row
-          >
-          <el-row
-            ><el-button
-              type="danger"
-              icon="el-icon-delete"
-              circle
-              @click="del"
-            ></el-button
-          ></el-row>
+          <div style="height: 100%; display: block; position: relative">
+            <div
+              style="
+                margin: auto;
+                height: 200px;
+                bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+              "
+            >
+              <el-row>
+                <span>{{ typeName }}</span>
+                <el-input-number
+                  v-if="typeName != '必修' && typeName != '任选'"
+                  v-model="course.min"
+                  :controls="false"
+                  :min="1"
+                  :max="20"
+                  size="mini"
+                ></el-input-number>
+              </el-row>
+              <el-row
+                ><el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  circle
+                  @click="del"
+                ></el-button
+              ></el-row>
+            </div>
+          </div>
         </el-aside>
         <el-main>
-          <CourseEntry :tableData="courses" />
+          <CourseEntry :tableData="course.courses" />
           <el-button
             type="text"
             style="float: left; margin-top: 10px"
@@ -38,20 +60,17 @@ export default {
     CourseEntry,
   },
   props: {
-    courses: Array,
-    type: String,
+    course: Object,
     bgcol: Boolean,
     index: Number,
   },
   data() {
-    return {
-      typeName: this.type,
-    };
+    return {};
   },
   created() {},
   methods: {
     addCourse() {
-      this.courses.push({
+      this.course.courses.push({
         code: "",
         name: "",
         category: undefined,
@@ -60,6 +79,11 @@ export default {
     },
     del() {
       this.$bus.emit("deleteModule", this.index);
+    },
+  },
+  computed: {
+    typeName() {
+      return this.course.type;
     },
   },
 };
@@ -74,11 +98,14 @@ export default {
 
 .el-aside {
   text-align: center;
-
   background-color: #fafafa;
-  line-height: 100px;
+  line-height: 80px;
 }
 .bgcol {
   background-color: #e5e7ee;
+}
+
+.el-input-number--mini {
+  width: 50px;
 }
 </style>

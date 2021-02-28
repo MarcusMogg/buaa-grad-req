@@ -29,15 +29,15 @@ const propertys = [
 function makeEnum(arr) {
     let obj = {};
     for (let val of arr) {
-        obj[val[0]] = Symbol(val[1]);
+        obj[val[0]] = val[1];
     }
     return Object.freeze(obj);
 }
 
-function makeMap(arr, enm) {
+function makeMap(arr) {
     let map = new Map();
     for (let val of arr) {
-        map.set(val[1], enm[val[0]]);
+        map.set(val[1], val[0]);
     }
     return Object.freeze(map);
 }
@@ -50,12 +50,3 @@ export const Categorys = makeMap(categorys, CourseCategory);
 
 export const CourseProp = makeEnum(propertys)
 export const Propertys = makeMap(propertys, CourseProp)
-
-export function GetName(enm, sym) {
-    for (const [key, value] of enm) {
-        if (value === sym) {
-            return key;
-        }
-    }
-    return undefined;
-}
