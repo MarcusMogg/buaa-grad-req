@@ -1,7 +1,41 @@
 <template>
   <div class="home">
     <el-row style="margin: 24px">
-      <el-col :span="8" :offset="8">
+      <el-col :span="2">
+        <el-button
+          size="mini"
+          type="success"
+          effect="dark"
+          icon="el-icon-check"
+          circle
+        >
+        </el-button>
+        <span> 通过</span>
+      </el-col>
+      <el-col :span="2">
+        <el-button
+          size="mini"
+          type="danger"
+          effect="dark"
+          icon="el-icon-close"
+          circle
+        >
+        </el-button>
+        <span> 未通过</span>
+      </el-col>
+      <el-col :span="2">
+        <el-button
+          size="mini"
+          type="warning"
+          effect="dark"
+          icon="el-icon-warning"
+          circle
+        >
+        </el-button>
+        <span> 存在字段不符</span>
+      </el-col>
+      <el-col :span="10" :offset="1">
+        <span> 学分:</span>
         <Progress :xx="content" />
       </el-col>
     </el-row>

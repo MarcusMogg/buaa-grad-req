@@ -52,6 +52,10 @@
       >
     </el-row>
     <el-dialog title="学习进度" :visible.sync="dialogFormVisible">
+      <span
+        >粘贴时请注意删除课程名称一列的空格，一般会出现在课程名称含有英文的情况下，比如Objective
+        C 面向对象程序设计</span
+      >
       <el-form :model="form">
         <el-form-item label="唯一标识名" :label-width="'120px'">
           <el-input v-model="form.title" autocomplete="off"></el-input>
