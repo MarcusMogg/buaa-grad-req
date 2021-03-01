@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <el-row style="margin: 24px">
+      <el-col :span="8" :offset="8">
+        <Progress :xx="content" />
+      </el-col>
+    </el-row>
     <el-container>
       <el-header>必修</el-header>
       <el-main>
@@ -60,6 +65,7 @@
 
 <script>
 import Result from "@/components/Result.vue";
+import Progress from "@/components/Progress.vue";
 import { loadTFromJson } from "@/model/transcript.js";
 import { loadRFromJson } from "@/model/requirement.js";
 import { Compare } from "@/utils/compare.js";
@@ -67,7 +73,7 @@ let rTitle = (s) => "BUAA" + s;
 
 export default {
   name: "Compare",
-  components: { Result },
+  components: { Result, Progress },
   data() {
     return {
       reqs: {},
@@ -108,14 +114,5 @@ export default {
 
 body > .el-container {
   margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>

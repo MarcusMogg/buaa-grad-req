@@ -67,7 +67,8 @@ let checkOptional2 = (arr) => {
     let res = {
         result: fail,
         type: courses.CourseProp.Optional2,
-        data: arr.data
+        data: arr.data,
+        min: arr.min
     }
     let cnt = arr.data.reduce(
         (accumulator, currentValue) =>
@@ -75,8 +76,6 @@ let checkOptional2 = (arr) => {
         0);
     if (cnt >= arr.min) {
         res.result = success;
-    } else if (cnt > 0) {
-        res.result = uncertain;
     }
     return res;
 }
@@ -85,7 +84,8 @@ let checkOptional3 = (arr) => {
     let res = {
         result: fail,
         type: courses.CourseProp.Optional3,
-        data: arr.data
+        data: arr.data,
+        min: arr.min
     }
     let cnt = arr.data.reduce(
         (accumulator, currentValue) =>
@@ -93,8 +93,6 @@ let checkOptional3 = (arr) => {
         0);
     if (cnt >= arr.min) {
         res.result = success;
-    } else if (cnt > 0) {
-        res.result = uncertain;
     }
     return res;
 }

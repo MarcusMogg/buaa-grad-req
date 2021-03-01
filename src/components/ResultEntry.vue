@@ -49,7 +49,7 @@
 <script>
 import * as courses from "@/model/course_module.js";
 export default {
-  name: "CourseEntry",
+  name: "ResultEntry",
   props: {
     tableData: Array,
   },

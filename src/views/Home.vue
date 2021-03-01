@@ -82,9 +82,10 @@ import {
   loadTFromJson,
   saveTAsJson,
 } from "@/model/transcript.js";
-import { loadRFromJson } from "@/model/requirement.js";
+import { saveRAsJson, loadRFromJson } from "@/model/requirement.js";
 import { Contain } from "@/utils/array.js";
 import { ERR } from "@/utils/message.js";
+import BasicData from "@/data";
 
 let rTitle = (s) => "BUAA" + s;
 
@@ -107,6 +108,11 @@ export default {
     };
   },
   created() {
+    BasicData.map((x) => {
+      if (!localStorage[rTitle(x.title)]) {
+        localStorage[rTitle(x.title)] = saveRAsJson(x);
+      }
+    });
     this.$bus.on("deleteTran", (index) => {
       localStorage.removeItem(rTitle(this.trans[index].title));
       this.trans.splice(index, 1);
